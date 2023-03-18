@@ -43,6 +43,7 @@
             <a href="#about">About Us</a>
             <a href="#testimonial">Testimonial</a>
             <a href="#contact">Contact Us</a>
+            <a href="{{route('login')}}">Login As Admin</a>
          </div>
       </div>
       <!-- header -->
