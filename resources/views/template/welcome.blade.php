@@ -107,38 +107,20 @@
                </div>
             </div>
             <div class="row">
+
+            @foreach ($protiens as $protien)
+
                <div class="col-md-3 col-sm-6">
                   <div class="protien">
-                     <figure><img src="{{asset('template_style/images/pro1.png')}}" alt="#"/></figure>
-                     <h3>$400</h3>
+                     <figure><img src="{{asset("img/" . $protien->image)}}" alt="#"/></figure>
+                     <h3>${{$protien->price}}</h3>
                      <span> Variations  </span>
                      <a class="read_more mar_top" href="Javascript:void(0)"> Buy Now</a>
                   </div>
                </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="protien">
-                     <figure><img src="{{asset('template_style/images/pro2.png')}}" alt="#"/></figure>
-                     <h3>$400</h3>
-                     <span>  Passages  </span>
-                     <a class="read_more mar_top" href="Javascript:void(0)"> Buy Now</a>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="protien">
-                     <figure><img src="{{asset('template_style/images/pro3.png')}}" alt="#"/></figure>
-                     <h3>$400</h3>
-                     <span> Variations </span>
-                     <a class="read_more mar_top" href="Javascript:void(0)"> Buy Now</a>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="protien">
-                     <figure><img src="{{asset('template_style/images/pro4.png')}}" alt="#"/></figure>
-                     <h3>$400</h3>
-                     <span> Pedicure </span>
-                     <a class="read_more mar_top" href="Javascript:void(0)"> Buy Now</a>
-                  </div>
-               </div>
+
+            @endforeach
+
             </div>
          </div>
       </div>

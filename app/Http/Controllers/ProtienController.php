@@ -13,7 +13,8 @@ class ProtienController extends Controller
      */
     public function index()
     {
-        //
+        $protiens=Protien::all();
+        return view("template.welcome",compact('protiens'));
     }
 
     /**
@@ -29,7 +30,26 @@ class ProtienController extends Controller
      */
     public function store(StoreProtienRequest $request)
     {
-        //
+                                //$city = new City;
+                                //$city->name = request('name');
+                                // $city->name = $request->input('name');
+                                // $file = $request->file('image');
+                                // $newFileName = str_replace(" ", "-", strtolower($city->name));
+                                // $newFileName = $newFileName . "." . $file->getClientOriginalExtension();
+                                // $city->image = $newFileName;
+                                // $city->save();
+
+                                // $file->storeAs('public/cities', $newFileName);
+                                // return redirect()->route('cities.list');
+
+                                // Get file Name
+                                //return $file->getClientOriginalName();
+                                // File Extension
+                                //return $file->getClientOriginalExtension();
+                                // File Size in bytes
+                                //return $file->getSize();
+                                // Store with a random Name
+                                //$newFileName = $file->store('public/cities');
     }
 
     /**
