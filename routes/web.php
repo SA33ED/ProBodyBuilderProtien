@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ProtienController::class, 'index']);
+Route::get('/', [ProtienController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');

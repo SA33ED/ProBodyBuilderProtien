@@ -1,8 +1,8 @@
 <!-- Title -->
-<title>@yield("title")</title>
+<title>Pro</title>
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico') }}" type="image/x-icon" />
+<link rel="shortcut icon" href="{{ asset("img/default.png") }}" type="image/x-icon" />
 
 <!-- Font -->
 <link rel="stylesheet"

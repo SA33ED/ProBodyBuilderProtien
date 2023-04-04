@@ -69,7 +69,7 @@
                   <div class="row">
                      <div class="col-md-12">
                         <div class="logo">
-                           <a href="index.html"><img src="{{asset('template_style/images/logo.png')}}" alt="#"/></a>
+                           <a href="{{route("welcome")}}"><img src="{{asset('template_style/images/logo.png')}}" alt="#"/></a>
                         </div>
                      </div>
                   </div>
