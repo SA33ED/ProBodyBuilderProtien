@@ -78,7 +78,7 @@
                     <!-- menu item mailbox-->
                     <li>
                         <a href="mail-box.html"><i class="ti-email"></i><span class="right-nav-text">Mail
-                                box</span> <span class="badge badge-pill badge-warning float-right mt-1">HOT</span> </a>
+                                box</span>  </a>
                     </li>
                     <!-- menu item Charts-->
                     <li>
@@ -114,7 +114,7 @@
                     <!-- menu item Widgets-->
                     <li>
                         <a href="widgets.html"><i class="ti-blackboard"></i><span class="right-nav-text">Widgets</span>
-                            <span class="badge badge-pill badge-danger float-right mt-1">59</span> </a>
+                             </a>
                     </li>
                     <!-- menu item Form-->
                     <li>
@@ -189,7 +189,7 @@
                     <!-- menu item maps-->
                     <li>
                         <a href="maps.html"><i class="ti-location-pin"></i><span class="right-nav-text">maps</span>
-                            <span class="badge badge-pill badge-success float-right mt-1">06</span></a>
+                            </a>
                     </li>
                     <!-- menu item timeline-->
                     <li>

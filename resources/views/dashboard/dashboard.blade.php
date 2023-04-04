@@ -43,6 +43,7 @@
                         </ol>
                     </div>
                 </div>
+                <div style="text-align: center;"><img src="{{asset("img/default.png")}}"></div>
             </div>
 
             <!--=================================
