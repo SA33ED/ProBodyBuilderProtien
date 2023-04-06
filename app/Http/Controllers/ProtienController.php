@@ -17,6 +17,7 @@ class ProtienController extends Controller
         $protiens=Protien::all();
         return view("template.welcome",compact('protiens'));
     }
+
     public function indexAuth()
     {
         $protiens=Protien::all();
@@ -36,26 +37,24 @@ class ProtienController extends Controller
      */
     public function store(StoreProtienRequest $request)
     {
-                                //$city = new City;
-                                //$city->name = request('name');
-                                // $city->name = $request->input('name');
-                                // $file = $request->file('image');
-                                // $newFileName = str_replace(" ", "-", strtolower($city->name));
-                                // $newFileName = $newFileName . "." . $file->getClientOriginalExtension();
-                                // $city->image = $newFileName;
-                                // $city->save();
+        $protien=new Protien;
+        $protien->name=$request->name;
+        $protien->about=$request->about;
+        $protien->price=$request->price;
 
-                                // $file->storeAs('public/cities', $newFileName);
-                                // return redirect()->route('cities.list');
-
-                                // Get file Name
-                                //return $file->getClientOriginalName();
-                                // File Extension
-                                //return $file->getClientOriginalExtension();
-                                // File Size in bytes
-                                //return $file->getSize();
-                                // Store with a random Name
-                                //$newFileName = $file->store('public/cities');
+        //get the image from the form
+        $file = $request->file('image');
+        //store the product name
+        $newFileName = str_replace(" ", "-", strtolower($protien->name));
+        //add the image extension o the name
+        $newFileName = $newFileName . "." . $file->getClientOriginalExtension();
+        //store image name to database
+        $protien->image = $newFileName;
+        $protien->save();
+        //store thhe image  this function takes three parameter (path,name,disk)
+        //mydisk(saeed) is in config/filesystems
+        $file->storeAs('img', $newFileName , 'saeed');
+        return redirect()->route('protiens');
     }
 
     /**

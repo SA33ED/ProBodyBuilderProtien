@@ -24,7 +24,7 @@
 @endsection
 @section('content')
 <!-- row -->
-<button type="button" class="btn btn-success">ADD New Protien</button><br><br>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">ADD New Protien</button><br><br>
 
 @foreach ($protiens as $protien)
     <div class="row row-cols-1 row-cols-md-3 g-4 ">
@@ -96,6 +96,59 @@
     </div>
 @endforeach
 <!-- row closed -->
+
+    <!--ADD NEW PROTIEN  -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
+
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- add_form -->
+                    <form action="{{route("protienStore")}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                            <div>
+                                <label for="formFileLg" class="form-label">Protien Image</label>
+                                <input class="form-control form-control-lg" id="formFileLg" type="file" name="image">
+                            </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="name" class="mr-sm-2">Protien Name
+                                    :</label>
+                                <input id="Name" type="text" name="name" class="form-control" required>
+                            </div>
+                            <div class="col">
+                                <label for="price" class="mr-sm-2">Protien Price
+                                    :</label>
+                                <input type="text" class="form-control" name="price" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">About
+                                :</label>
+                            <textarea class="form-control" name="about" id="exampleFormControlTextarea1"
+                                rows="3"></textarea>
+                        </div>
+                        <br><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">CLOSE</button>
+                    <button type="submit" class="btn btn-success">SUBMIT</button>
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
 <br>
 @endsection
 @section('js')
