@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Protien;
 use App\Http\Requests\StoreProtienRequest;
 use App\Http\Requests\UpdateProtienRequest;
+use GuzzleHttp\Handler\Proxy;
 
 class ProtienController extends Controller
 {
@@ -78,7 +79,13 @@ class ProtienController extends Controller
      */
     public function update(UpdateProtienRequest $request, Protien $protien)
     {
-        //
+            $protien= Protien::find($request->protienid);
+            $protien->name=$request->name;
+            $protien->about=$request->about;
+            $protien->price=$request->price;
+            $protien->save();
+            return redirect()->route('protiens');
+
     }
 
     /**

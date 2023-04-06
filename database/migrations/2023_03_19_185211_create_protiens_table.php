@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('protiens', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("image",255);
-            $table->string("about",500);
+            $table->string("image",255)->default('default.png');
+            $table->string("about",1000);
             $table->float("price");
             $table->timestamps();
         });

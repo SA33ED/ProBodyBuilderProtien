@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/protiens',[ProtienController::class,'indexAuth'])->name('protiens');
+    Route::post('/protiens',[ProtienController::class,'update'])->name('protiensUpdate');
 });
 
 require __DIR__ . '/auth.php';
