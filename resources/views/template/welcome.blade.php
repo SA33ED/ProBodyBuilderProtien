@@ -113,8 +113,9 @@
                <div class="col-md-3 col-sm-6">
                   <div class="protien">
                      <figure><img src="{{asset("img/" . $protien->image)}}" alt="#"/></figure>
-                     <h3>${{$protien->price}}</h3>
-                     <span> Variations  </span>
+                     <h3>${{$protien->name}}</h3>
+                     <h2>${{$protien->price}}</h2>
+                     <span> {{$protien->about}}  </span>
                      <a class="read_more mar_top" href="Javascript:void(0)"> Buy Now</a>
                   </div>
                </div>

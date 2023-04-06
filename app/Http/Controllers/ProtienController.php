@@ -16,6 +16,11 @@ class ProtienController extends Controller
         $protiens=Protien::all();
         return view("template.welcome",compact('protiens'));
     }
+    public function indexAuth()
+    {
+        $protiens=Protien::all();
+        return view("dashboard.protiens",compact('protiens'));
+    }
 
     /**
      * Show the form for creating a new resource.

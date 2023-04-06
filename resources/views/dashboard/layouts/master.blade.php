@@ -8,7 +8,7 @@
     <meta name="description" content="Webmin - Bootstrap 4 & Angular 5 Admin Dashboard Template" />
     <meta name="author" content="potenzaglobalsolutions.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    @include('layouts.head')
+    @include('dashboard.layouts.head')
 </head>
 
 <body>
@@ -25,9 +25,9 @@
         <!--=================================
  preloader -->
 
-        @include('layouts.main-header')
+        @include('dashboard.layouts.main-header')
 
-        @include('layouts.main-sidebar')
+        @include('dashboard.layouts.main-sidebar')
 
         <!--=================================
  Main content -->
@@ -44,7 +44,7 @@
             <!--=================================
  footer -->
 
-            @include('layouts.footer')
+            @include('dashboard.layouts.footer')
         </div><!-- main content wrapper end-->
     </div>
     </div>
@@ -53,7 +53,7 @@
     <!--=================================
  footer -->
 
-    @include('layouts.footer-scripts')
+    @include('dashboard.layouts.footer-scripts')
 
 </body>
 
