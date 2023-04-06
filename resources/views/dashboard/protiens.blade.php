@@ -37,9 +37,9 @@
                         <h5 class="card-title">${{$protien->price}}</h5>
                         <p class="card-text">{{$protien->about}}</p>
                         <br>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit{{$protien->id}}">EDIT <i class="fa fa-edit"></i>
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#edit{{$protien->id}}">EDIT <i class="fa fa-edit"></i>
                             </button>
-                        <button type="button" class="btn btn-danger">DELETE</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$protien->id}}">DELETE</button>
                     </div>
                 </div>
             </div>
@@ -91,6 +91,32 @@
                         </div>
                     </form>
 
+            </div>
+        </div>
+    </div>
+
+    <!--delete_Modal_protien -->
+    <div class="modal fade" id="delete{{$protien->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">DELETE {{$protien->name}}!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('deleteProtien',$protien->id)}}" method="post">
+                        @method("DELETE")
+                        @csrf
+                        Are You Sure For DELET "{{$protien->name}}"?<br><br>
+                        <input type="hidden" id="id" name="id" class="form-control" value="{{$protien->id}}">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                            <button type="submit" class="btn btn-danger">DELETE</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

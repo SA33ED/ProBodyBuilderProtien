@@ -90,8 +90,10 @@ class ProtienController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Protien $protien)
+    public function destroy($id)
     {
-        //
+        $protien=Protien::find($id);
+        $protien->delete();
+        return redirect()->route("protiens");
     }
 }
