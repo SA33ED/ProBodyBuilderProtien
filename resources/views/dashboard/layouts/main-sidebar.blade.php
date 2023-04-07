@@ -19,6 +19,10 @@
                     <li>
                         <a href="{{route("protiensTrash")}}"><i class="ti-menu-alt"></i><span class="right-nav-text">Deleted Protiens</span> </a>
                     </li>
+                    <!-- menu item mailbox-->
+                    <li>
+                        <a href="mail-box.html"><i class="ti-email"></i><span class="right-nav-text">Incoming Orders</span>  </a>
+                    </li>
                     <!-- menu item todo-->
                     <li>
                         <a href="todo-list.html"><i class="ti-file"></i></i><span class="right-nav-text">Todo
@@ -29,11 +33,7 @@
                         <a href="chat-page.html"><i class="ti-comments"></i><span class="right-nav-text">Chat
                             </span></a>
                     </li>
-                    <!-- menu item mailbox-->
-                    <li>
-                        <a href="mail-box.html"><i class="ti-email"></i><span class="right-nav-text">Mail
-                                box</span>  </a>
-                    </li>
+
                     <!-- menu item Charts-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#chart">
