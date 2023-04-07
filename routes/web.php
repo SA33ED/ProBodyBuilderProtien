@@ -27,9 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/protiens',[ProtienController::class,'indexAuth'])->name('protiens');
-    Route::post('/protiens/update',[ProtienController::class,'update'])->name('protiensUpdate');
+    Route::get('/protiens/trash',[ProtienController::class,'trash'])->name('protiensTrash');
     Route::post('/protiens',[ProtienController::class,'store'])->name('protienStore');
+    Route::post('/protiens/update',[ProtienController::class,'update'])->name('protiensUpdate');
+    Route::post('/protiens/restore/{id}',[ProtienController::class,'restore'])->name('restoreProtien');
+    Route::post('/protiens/update/trash',[ProtienController::class,'updateFromTrash'])->name('updateFromTrash');
     Route::delete('protiens/{id}',[ProtienController::class,'destroy'])->name('deleteProtien');
+    Route::delete('protiens/force/{id}',[ProtienController::class,'fdelete'])->name('forceDeleteProtien');
 
 });
 

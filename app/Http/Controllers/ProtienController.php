@@ -87,6 +87,17 @@ class ProtienController extends Controller
 
     }
 
+    public function updateFromTrash(UpdateProtienRequest $request, Protien $protien)
+    {
+            $protien= Protien::withTrashed()->find($request->protienid);
+            $protien->name=$request->name;
+            $protien->about=$request->about;
+            $protien->price=$request->price;
+            $protien->save();
+            return redirect()->route('protiensTrash');
+
+    }
+
     /**
      * Remove the specified resource from storage.
      */
@@ -94,9 +105,22 @@ class ProtienController extends Controller
     {
         $protien=Protien::find($id);
         $protien->delete();
-        return redirect()->route("protiens");
+        return redirect()->route("protiensTrash");
+    }
+
+    public function fdelete($id){
+        $protien = Protien::withTrashed()->find($id);
+        $protien->forceDelete();
+        return redirect()->route('protiensTrash');
     }
     public function trash(){
-        $protien=Protien::onlyTrashed()->get();
+        $protiens=Protien::onlyTrashed()->get();
+        return view('trashprotiens',compact('protiens'));
+    }
+
+    public function restore($id){
+        $protien=Protien::withTrashed()->find($id);
+        $protien->restore();
+        return redirect()->route("protiensTrash");
     }
 }

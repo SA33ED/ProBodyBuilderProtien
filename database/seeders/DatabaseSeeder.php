@@ -68,5 +68,26 @@ class DatabaseSeeder extends Seeder
 
             'image' =>'Advanced Mass Maker.jpg'
         ]);
+
+
+        \App\Models\Protien::factory()->create([
+
+            'name' => 'carbohid',
+
+            'price' => '7500',
+
+            'about' => '
+            -WEIGHT GAIN FORMULA: Protein blend from 5 different sources is designed to increase lean muscle mass gains.
+            -SUSTAINED ENERGY: 87g complex carbs provide an energy boost to increase stamina during high-intensity workouts.
+            -ESSENTIAL NUTRITION: Essential Vitamins, Minerals & Trace Elements are to boost immunity & support healthy muscle gains.
+            -BCAA: Supports faster recovery by preventing muscle soreness and reducing recovery time.
+            -EASY TO USE: Advanced Mass Maker dissolves quickly in cold water or milk.
+
+            ',
+
+            'image' => 'carbohid.jpg',
+
+            'deleted_at' =>'2023-04-07 11:45:16'
+        ]);
     }
 }

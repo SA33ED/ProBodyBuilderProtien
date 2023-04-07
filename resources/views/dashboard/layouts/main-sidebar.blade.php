@@ -17,7 +17,7 @@
                     </li>
                     <!-- menu item calendar-->
                     <li>
-                        <a href="todo-list.html"><i class="ti-menu-alt"></i><span class="right-nav-text">Requests</span> </a>
+                        <a href="{{route("protiensTrash")}}"><i class="ti-menu-alt"></i><span class="right-nav-text">Deleted Protiens</span> </a>
                     </li>
                     <!-- menu item todo-->
                     <li>

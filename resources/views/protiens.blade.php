@@ -39,7 +39,7 @@
                         <br>
                         <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#edit{{$protien->id}}">EDIT <i class="fa fa-edit"></i>
                             </button>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$protien->id}}">DELETE</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$protien->id}}">DELETE <i class="fa fa-trash"></i></button>
                     </div>
                 </div>
             </div>
@@ -109,7 +109,7 @@
                     <form action="{{route('deleteProtien',$protien->id)}}" method="post">
                         @method("DELETE")
                         @csrf
-                        Are You Sure For DELET "{{$protien->name}}"?<br><br>
+                        Are You Sure For DELETE "{{$protien->name}}"?<br><br>
                         <input type="hidden" id="id" name="id" class="form-control" value="{{$protien->id}}">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
