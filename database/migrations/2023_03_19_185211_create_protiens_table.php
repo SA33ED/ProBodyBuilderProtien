@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("about",1000);
             $table->float("price");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

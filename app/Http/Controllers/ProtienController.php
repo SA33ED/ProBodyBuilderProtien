@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Protien;
 use App\Http\Requests\StoreProtienRequest;
 use App\Http\Requests\UpdateProtienRequest;
-use GuzzleHttp\Handler\Proxy;
+
 
 class ProtienController extends Controller
 {
@@ -15,13 +15,13 @@ class ProtienController extends Controller
     public function index()
     {
         $protiens=Protien::all();
-        return view("template.welcome",compact('protiens'));
+        return view("welcome",compact('protiens'));
     }
 
     public function indexAuth()
     {
         $protiens=Protien::all();
-        return view("dashboard.protiens",compact('protiens'));
+        return view("protiens",compact('protiens'));
     }
 
     /**
@@ -95,5 +95,8 @@ class ProtienController extends Controller
         $protien=Protien::find($id);
         $protien->delete();
         return redirect()->route("protiens");
+    }
+    public function trash(){
+        $protien=Protien::onlyTrashed()->get();
     }
 }

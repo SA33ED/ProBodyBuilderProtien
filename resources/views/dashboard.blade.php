@@ -1,17 +1,65 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Webmin - Bootstrap 4 & Angular 5 Admin Dashboard Template" />
+    <meta name="author" content="potenzaglobalsolutions.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    @include('dashboard.layouts.head')
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <!--=================================
+ preloader -->
+
+        <div id="pre-loader">
+            <img src="assets/images/pre-loader/loader-01.svg" alt="">
+        </div>
+
+        <!--=================================
+ preloader -->
+
+        @include('dashboard.layouts.main-header')
+
+        @include('dashboard.layouts.main-sidebar')
+
+        <!--=================================
+ Main content -->
+        <!-- main-content -->
+        <div class="content-wrapper">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4 class="mb-0"> Dashboard</h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right">
+                        </ol>
+                    </div>
                 </div>
             </div>
-        </div>
+                <div style="text-align: center;"><img src="{{asset("img/default.png")}}"></div>
+                
+            <!--=================================
+ footer -->
+
+            @include('dashboard.layouts.footer')
+        </div><!-- main content wrapper end-->
     </div>
-</x-app-layout>
+    </div>
+    </div>
+
+    <!--=================================
+ footer -->
+
+    @include('dashboard.layouts.footer-scripts')
+
+</body>
+
+</html>
