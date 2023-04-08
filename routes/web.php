@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProtienController;
 use Illuminate\Support\Facades\Route;
@@ -22,18 +23,26 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    //profie_routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    //protiens_routes
     Route::get('/protiens',[ProtienController::class,'indexAuth'])->name('protiens');
-    Route::get('/protiens/trash',[ProtienController::class,'trash'])->name('protiensTrash');
     Route::post('/protiens',[ProtienController::class,'store'])->name('protienStore');
     Route::post('/protiens/update',[ProtienController::class,'update'])->name('protiensUpdate');
-    Route::post('/protiens/restore/{id}',[ProtienController::class,'restore'])->name('restoreProtien');
-    Route::post('/protiens/update/trash',[ProtienController::class,'updateFromTrash'])->name('updateFromTrash');
     Route::delete('protiens/{id}',[ProtienController::class,'destroy'])->name('deleteProtien');
+
+    //trash_protien_routes
+    Route::get('/protiens/trash',[ProtienController::class,'trash'])->name('protiensTrash');
+    Route::post('/protiens/update/trash',[ProtienController::class,'updateFromTrash'])->name('updateFromTrash');
+    Route::post('/protiens/restore/{id}',[ProtienController::class,'restore'])->name('restoreProtien');
     Route::delete('protiens/force/{id}',[ProtienController::class,'fdelete'])->name('forceDeleteProtien');
+
+
+    //order_routes
+    Route::post('/orders',[OrderController::class,'store'])->name("orderStore");
 
 });
 

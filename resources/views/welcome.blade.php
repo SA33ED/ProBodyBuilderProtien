@@ -81,7 +81,7 @@
                      <div class="col-md-5">
                         <div class="banner_text">
                            <h1>Pro<br> Body Builder Protien</h1>
-                           <a class="get_btn" href="#about" role="button" >About Protien</a> <a class="get_btn" href="#contact" role="button">Contact Us</a>
+                           <a class="get_btn" href="#about" role="button" >About Protien</a> <a class="get_btn" href="#contact" role="button">BUY NOW</a>
                         </div>
                      </div>
                      <div class="col-md-7">
@@ -96,6 +96,8 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
+
+
       <!-- our protien  -->
       <div id="protien" class="protien_main">
          <div class="container">
@@ -113,9 +115,9 @@
                <div class="col-md-3 col-sm-6">
                   <div class="protien">
                      <figure><img src="{{asset("img/" . $protien->image)}}" alt="#"/></figure>
-                     <h3>${{$protien->name}}</h3>
+                     <h4>${{$protien->name}}</h4>
                      <h2>${{$protien->price}}</h2>
-                     <span> {{$protien->about}}  </span>
+                     {{-- <span> {{$protien->about}}  </span> --}}
                      <a class="read_more mar_top" href="Javascript:void(0)"> Buy Now</a>
                   </div>
                </div>
@@ -126,6 +128,9 @@
          </div>
       </div>
       <!-- end our protien  -->
+
+
+
       <!-- about -->
       <div id="about" class="about">
          <div class="container-fluid">
@@ -251,30 +256,48 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h2>Request a call back</h2>
+                     <h2>Request a Protien</h2>
                   </div>
                </div>
             </div>
             <div class="row">
                <div class="col-md-6 offset-md-3">
-                  <form id="request" class="main_form">
+               <!-- order_form -->
+                  <form action="{{route("orderStore")}}" method="POST" id="request" class="main_form">
+                    @csrf
                      <div class="row">
                         <div class="col-md-12 ">
-                           <input class="contactus" placeholder="Full Name" type="type" name="Full Name">
+                           <input class="contactus" placeholder="Enter Your Full Name" type="type" name="name">
                         </div>
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Email " type="type" name="Email ">
+                           <input class="contactus" placeholder="Enter Your Phone Number" type="type" name="phone">
                         </div>
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">
+                           <input class="contactus" placeholder="Enter Your Adress" type="type" name="address">
                         </div>
                         <div class="col-md-12">
-                           <textarea class="textarea" placeholder="Message" type="type" Message="Name">Message</textarea>
+                            <select name="protien_id" id="cars" class="contactus">
+                                <option value="volvo" selected disabled>Select Your Protien</option>
+                                @foreach ($protiens as $protien)
+
+                                    <option value="{{$protien->id}}">{{$protien->name}}</option>
+
+                                @endforeach
+
+                            </select>
                         </div>
                         <div class="col-md-12">
-                           <button class="send_btn">Send</button>
+                           <input class="contactus" placeholder="quantity" type="number" name="quantity">
+                        </div>
+
+                        <div class="col-md-12">
+                           <textarea class="textarea" placeholder="Message" type="type" Message="Name" name="message">Message</textarea>
+                        </div>
+                        <div class="col-md-12">
+                           <button class="send_btn" type="submit">Send</button>
                         </div>
                      </div>
+
                   </form>
                </div>
             </div>
