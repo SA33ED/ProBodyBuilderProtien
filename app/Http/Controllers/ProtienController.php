@@ -60,9 +60,11 @@ class ProtienController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Protien $protien)
+    public function show($id)
     {
-        //
+        $protien = Protien::find($id);
+
+        return view("show", compact("protien"));
     }
 
     /**
@@ -106,13 +108,13 @@ class ProtienController extends Controller
 
     public function updateFromTrash(UpdateProtienRequest $request, Protien $protien)
     {
-            $protien= Protien::withTrashed()->find($request->protienid);
-            $protien->name=$request->name;
-            $protien->about=$request->about;
-            $protien->price=$request->price;
+        $protien = Protien::withTrashed()->find($request->protienid);
+        $protien->name = $request->name;
+        $protien->about = $request->about;
+        $protien->price = $request->price;
 
-            //new image
-            if ($request->image != null) {
+        //new image
+        if ($request->image != null) {
             //get the image from the form
             $file = $request->file('image');
             //store the product name
@@ -124,11 +126,10 @@ class ProtienController extends Controller
             //store thhe image  this function takes three parameter (path,name,disk)
             //mydisk(saeed) is in config/filesystems
             $file->storeAs('img', $newFileName, 'saeed');
-            }
+        }
 
-            $protien->save();
-            return redirect()->route('protiensTrash');
-
+        $protien->save();
+        return redirect()->route('protiensTrash');
     }
 
     /**

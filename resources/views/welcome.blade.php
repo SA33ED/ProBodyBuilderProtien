@@ -18,8 +18,8 @@
       <link rel="stylesheet" href="{{asset('template_style/css/style.css')}}">
       <!-- Responsive-->
       <link rel="stylesheet" href="{{asset('template_style/css/responsive.css')}}">
-      <!-- fevicon -->
-      <link rel="icon" href="{{asset('template_style/images/fevicon.png')}}" type="image/gif" />
+      <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset("img/default.png") }}" type="image/x-icon" />
       <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="{{asset('template_style/css/jquery.mCustomScrollbar.min.css')}}">
       <!-- Tweaks for older IEs-->
@@ -114,11 +114,11 @@
 
                <div class="col-md-3 col-sm-6">
                   <div class="protien">
-                     <figure><img src="{{asset("img/" . $protien->image)}}" alt="#"/></figure>
-                     <h4>${{$protien->name}}</h4>
+                     <figure><img src="{{asset("img/" . $protien->image)}}" /></figure>
+                     <h4>{{$protien->name}}</h4>
                      <h2>${{$protien->price}}</h2>
                      {{-- <span> {{$protien->about}}  </span> --}}
-                     <a class="read_more mar_top" href="Javascript:void(0)"> Buy Now</a>
+                     <a class="read_more mar_top" href="{{route("showProtien",$protien->id)}}">Show More</a>
                   </div>
                </div>
 
