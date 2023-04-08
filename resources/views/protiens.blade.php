@@ -60,8 +60,12 @@
                 </div>
                 <div class="modal-body">
                     <!-- edit_form -->
-                    <form action="{{route("protiensUpdate")}}" method="POST">
+                    <form action="{{route("protiensUpdate")}}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <div>
+                            <label for="formFileLg" class="form-label">Protien Image</label>
+                            <input class="form-control form-control-lg" id="formFileLg" type="file" name="image">
+                        </div>
                         <input id="id" type="hidden" name="protienid" class="form-control" value="{{$protien->id}}" required>
                         <div class="row">
                             <div class="col">

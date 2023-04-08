@@ -14,14 +14,14 @@ class ProtienController extends Controller
      */
     public function index()
     {
-        $protiens=Protien::all();
-        return view("welcome",compact('protiens'));
+        $protiens = Protien::all();
+        return view("welcome", compact('protiens'));
     }
 
     public function indexAuth()
     {
-        $protiens=Protien::all();
-        return view("protiens",compact('protiens'));
+        $protiens = Protien::all();
+        return view("protiens", compact('protiens'));
     }
 
     /**
@@ -37,23 +37,23 @@ class ProtienController extends Controller
      */
     public function store(StoreProtienRequest $request)
     {
-        $protien=new Protien;
-        $protien->name=$request->name;
-        $protien->about=$request->about;
-        $protien->price=$request->price;
+        $protien = new Protien;
+        $protien->name = $request->name;
+        $protien->about = $request->about;
+        $protien->price = $request->price;
 
         //get the image from the form
         $file = $request->file('image');
         //store the product name
         $newFileName = str_replace(" ", "-", strtolower($protien->name));
         //add the image extension o the name
-        $newFileName = $newFileName . "." . $file->getClientOriginalExtension();
+        $newFileName = $newFileName . "-" . time() . "." . $file->getClientOriginalExtension();
         //store image name to database
         $protien->image = $newFileName;
         $protien->save();
         //store thhe image  this function takes three parameter (path,name,disk)
         //mydisk(saeed) is in config/filesystems
-        $file->storeAs('img', $newFileName , 'saeed');
+        $file->storeAs('img', $newFileName, 'saeed');
         return redirect()->route('protiens');
     }
 
@@ -78,13 +78,30 @@ class ProtienController extends Controller
      */
     public function update(UpdateProtienRequest $request, Protien $protien)
     {
-            $protien= Protien::find($request->protienid);
-            $protien->name=$request->name;
-            $protien->about=$request->about;
-            $protien->price=$request->price;
-            $protien->save();
-            return redirect()->route('protiens');
 
+        $protien = Protien::find($request->protienid);
+        $protien->name = $request->name;
+        $protien->about = $request->about;
+        $protien->price = $request->price;
+
+        //new image
+        if ($request->image != null) {
+            //get the image from the form
+            $file = $request->file('image');
+            //store the product name
+            $newFileName = str_replace(" ", "-", strtolower($protien->name));
+            //add the image extension o the name
+            $newFileName = $newFileName . "-" . time() . "." . $file->getClientOriginalExtension();
+            //store image name to database
+            $protien->image = $newFileName;
+            //store thhe image  this function takes three parameter (path,name,disk)
+            //mydisk(saeed) is in config/filesystems
+            $file->storeAs('img', $newFileName, 'saeed');
+        }
+
+
+        $protien->save();
+        return redirect()->route('protiens');
     }
 
     public function updateFromTrash(UpdateProtienRequest $request, Protien $protien)
@@ -93,6 +110,22 @@ class ProtienController extends Controller
             $protien->name=$request->name;
             $protien->about=$request->about;
             $protien->price=$request->price;
+
+            //new image
+            if ($request->image != null) {
+            //get the image from the form
+            $file = $request->file('image');
+            //store the product name
+            $newFileName = str_replace(" ", "-", strtolower($protien->name));
+            //add the image extension o the name
+            $newFileName = $newFileName . "-" . time() . "." . $file->getClientOriginalExtension();
+            //store image name to database
+            $protien->image = $newFileName;
+            //store thhe image  this function takes three parameter (path,name,disk)
+            //mydisk(saeed) is in config/filesystems
+            $file->storeAs('img', $newFileName, 'saeed');
+            }
+
             $protien->save();
             return redirect()->route('protiensTrash');
 
@@ -103,23 +136,26 @@ class ProtienController extends Controller
      */
     public function destroy($id)
     {
-        $protien=Protien::find($id);
+        $protien = Protien::find($id);
         $protien->delete();
-        return redirect()->route("protiensTrash");
+        return redirect()->route("protiens");
     }
 
-    public function fdelete($id){
+    public function fdelete($id)
+    {
         $protien = Protien::withTrashed()->find($id);
         $protien->forceDelete();
         return redirect()->route('protiensTrash');
     }
-    public function trash(){
-        $protiens=Protien::onlyTrashed()->get();
-        return view('trashprotiens',compact('protiens'));
+    public function trash()
+    {
+        $protiens = Protien::onlyTrashed()->get();
+        return view('trashprotiens', compact('protiens'));
     }
 
-    public function restore($id){
-        $protien=Protien::withTrashed()->find($id);
+    public function restore($id)
+    {
+        $protien = Protien::withTrashed()->find($id);
         $protien->restore();
         return redirect()->route("protiensTrash");
     }
