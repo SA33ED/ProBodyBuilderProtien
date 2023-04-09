@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProtienController::class, 'index'])->name('welcome');
 Route::get('show/{id}', [ProtienController::class, 'show'])->name('showProtien');
+Route::post('/orders', [OrderController::class, 'store'])->name("orderStore");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -43,7 +44,8 @@ Route::middleware('auth')->group(function () {
 
 
     //order_routes
-    Route::post('/orders', [OrderController::class, 'store'])->name("orderStore");
+    Route::get('/orders', [OrderController::class, 'index'])->name("orders");
+    Route::get('/orders/{id}', [OrderController::class, 'show'])->name("showOrder");
 });
 
 require __DIR__ . '/auth.php';

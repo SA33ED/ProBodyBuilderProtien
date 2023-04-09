@@ -21,5 +21,13 @@ class OrderSeeder extends Seeder
             "message"=>"Nothing",
             "protien_id"=>"2",
         ]);
+        Order::create([
+            "name" => "Mohammed saeed",
+            "phone" => "01032180690",
+            "address" => "Cairo,Altagmmo3 Elawal,villa 179",
+            "quantity" => "5",
+            "message" => "Nothing",
+            "protien_id" => "2",
+        ]);
     }
 }

@@ -11,6 +11,6 @@ class Order extends Model
     use HasFactory;
     use SoftDeletes;
     public function protien(){
-        $this->hasOne(Protien::class);
-    }
+        return $this->belongsTo(Protien::class);
+      }
 }

@@ -10,4 +10,7 @@ class Protien extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    public function orders(){
+        $this->hasMany(Order::class);
+    }
 }

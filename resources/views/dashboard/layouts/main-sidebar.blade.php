@@ -21,7 +21,7 @@
                     </li>
                     <!-- menu item mailbox-->
                     <li>
-                        <a href="mail-box.html"><i class="ti-email"></i><span class="right-nav-text">Incoming Orders</span>  </a>
+                        <a href="{{route("orders")}}"><i class="ti-email"></i><span class="right-nav-text">Incoming Orders</span>  </a>
                     </li>
                     <!-- menu item todo-->
                     <li>

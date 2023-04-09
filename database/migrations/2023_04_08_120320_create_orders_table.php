@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer("quantity");
             $table->string("message",500);
             $table->foreignId('protien_id')->index();
-            $table->foreign('protien_id')->references('id')->on('protiens')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('protien_id')->references('id')->on('protiens')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->softDeletes();
             $table->timestamps();
         });

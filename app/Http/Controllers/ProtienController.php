@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Protien;
 use App\Http\Requests\StoreProtienRequest;
 use App\Http\Requests\UpdateProtienRequest;
-
+use App\Models\Order;
+use PhpParser\Node\Stmt\Foreach_;
 
 class ProtienController extends Controller
 {
@@ -139,6 +140,12 @@ class ProtienController extends Controller
     {
         $protien = Protien::find($id);
         $protien->delete();
+        //delete related Orders with this protien
+        $orders = Order::where('protien_id', $id)->get();
+        foreach ($orders as $order) {
+            $order->delete();
+        }
+
         return redirect()->route("protiens");
     }
 
@@ -146,6 +153,11 @@ class ProtienController extends Controller
     {
         $protien = Protien::withTrashed()->find($id);
         $protien->forceDelete();
+        //delete related Orders with this protien
+        $orders = Order::withTrashed()->where('protien_id', $id)->get();
+        foreach ($orders as $order) {
+            $order->forceDelete();
+        }
         return redirect()->route('protiensTrash');
     }
     public function trash()
@@ -158,6 +170,11 @@ class ProtienController extends Controller
     {
         $protien = Protien::withTrashed()->find($id);
         $protien->restore();
+        //restore related Orders with this protien
+        $orders = Order::withTrashed()->where('protien_id', $id)->get();
+        foreach ($orders as $order) {
+            $order->restore();
+        }
         return redirect()->route("protiensTrash");
     }
 }
