@@ -45,9 +45,9 @@
                             <p class="card-text"><span style="color:red;">Quantity :- </span>{{$order->quantity}}</p><br>
                             <p class="card-text"><span style="color:red;">Message :- </span>{{$order->message}}</p><br>
 
-                            <a href="{{route("showOrder",$order->id)}}" class="btn btn-warning">under processing</a>
-                            <a href="{{route("showOrder",$order->id)}}" class="btn btn-danger">Decline</a>
-                            <a href="{{route("showOrder",$order->id)}}" class="btn btn-success">Done</a>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#UnderProcessingModal{{$order->id}}">under processing</button>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$order->id}}">Reject</button>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#doneModal{{$order->id}}">Done</button>
                         </div>
                     </div><br>
 
@@ -56,6 +56,83 @@
         </div>
     </div>
 </div>
+
+<!--UnderProcessing_modal -->
+    <div class="modal fade" id="UnderProcessingModal{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Under Processing {{$order->name}}'s Order!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('updateToUnderProcessingOrder',$order->id)}}" method="post">
+
+                        @csrf
+                        Are You Sure For Make Under Processing "{{$order->name}}'s Order"?<br><br>
+                        <input type="hidden" id="id" name="id" class="form-control" value="{{$order->id}}">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                            <button type="submit" class="btn btn-warning">Make Under Processing</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--Done_Modal_order -->
+    <div class="modal fade" id="doneModal{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{$order->name}}'s Order is Done!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('updateToDoneOrder',$order->id)}}" method="post">
+
+                        @csrf
+                        Are You Sure That "{{$order->name}}'s Order Is Done"?<br><br>
+                        <input type="hidden" id="id" name="id" class="form-control" value="{{$order->id}}">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                            <button type="submit" class="btn btn-success">DONE</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--delete_Modal_order -->
+    <div class="modal fade" id="delete{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">DELETE {{$order->name}}'s Order!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('updateToDeleteOrder',$order->id)}}" method="post">
+                        @method("DELETE")
+                        @csrf
+                        Are You Sure For DELETE "{{$order->name}}'s Order"?<br><br>
+                        <input type="hidden" id="id" name="id" class="form-control" value="{{$order->id}}">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                            <button type="submit" class="btn btn-danger">DELETE</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 <!-- row closed -->
 @endsection
 @section('js')

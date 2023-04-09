@@ -13,16 +13,50 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders=Order::all();
+        $orders=Order::where("status","0")->get();
         return view("orders",compact("orders"));
+    }
+    public function underProcessingIndex()
+    {
+        $orders=Order::where("status","1")->get();
+        return view("underprocessingorders",compact("orders"));
+    }
+    public function doneIndex()
+    {
+        $orders=Order::where("status","2")->get();
+        return view("doneorders",compact("orders"));
+    }
+    public function underProcessingOrder($id)
+    {
+        $order=Order::find($id);
+        $order->status=1;
+        $order->save();
+        return redirect()->route("orders");
+
+    }
+    public function doneOrder($id)
+    {
+        $order=Order::find($id);
+        $order->status=2;
+        $order->save();
+        return redirect()->route("orders");
+
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function trash()
     {
-        //
+        $orders=Order::onlyTrashed()->get();
+        return view("trashorders",compact('orders'));
+
+    }
+    public function showTrash($id)
+    {
+        $order=Order::withTrashed()->find($id);
+        return view("showtrashorder",compact('order'));
+
     }
 
     /**
@@ -61,16 +95,22 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOrderRequest $request, Order $order)
+    public function restore($id)
     {
-        //
+        $order=Order::withTrashed()->find($id);
+        $order->restore();
+        $order->status=0;
+        return redirect()->route("ordersTrash");
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        //
+        $order=Order::find($id);
+        $order->delete();
+        return redirect()->route("orders");
     }
 }

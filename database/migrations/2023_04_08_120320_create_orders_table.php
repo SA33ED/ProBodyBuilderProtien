@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string("name",100);
-            $table->string("phone",20);
-            $table->string("address",500);
+            $table->string("name", 100);
+            $table->string("phone", 20);
+            $table->string("address", 500);
             $table->integer("quantity");
-            $table->string("message",500);
+            $table->tinyInteger("status")->default(0);
+            $table->string("message", 500);
             $table->foreignId('protien_id')->index();
             $table->foreign('protien_id')->references('id')->on('protiens')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->softDeletes();

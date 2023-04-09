@@ -9,16 +9,15 @@
             <!-- Top bar left -->
             <ul class="nav navbar-nav mr-auto">
                 <li class="nav-item">
-                <a class="navbar-brand brand-logo" href="{{route("dashboard")}}"><h4>{{ Auth::user()->name }}</h4></a>
 
                 </li>
             </ul>
             <!-- top bar right -->
             <ul class="nav navbar-nav ml-auto">
 
-                <li class="nav-item fullscreen">
+                {{-- <li class="nav-item fullscreen">
                     <a id="btnFullscreen" href="#" class="nav-link"><i class="ti-fullscreen"></i></a>
-                </li>
+                </li> --}}
                 {{-- <li class="nav-item dropdown ">
                     <a class="nav-link top-nav" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                         aria-expanded="false">
@@ -44,7 +43,7 @@
                     </div>
                 </li> --}}
 
-                <li class="nav-item dropdown ">
+                {{-- <li class="nav-item dropdown ">
 
                     <a class="nav-link top-nav" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                         aria-expanded="true"> <i class=" ti-view-grid"></i> </a>
@@ -70,7 +69,9 @@
                             </a>
                         </div>
                     </div>
-                </li>
+                </li> --}}
+
+                    <a class="navbar-brand brand-logo" href="{{route("dashboard")}}"><h4>{{ Auth::user()->name }}</h4></a>
                 <li class="nav-item dropdown mr-30">
                     <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button"
                         aria-haspopup="true" aria-expanded="false">
@@ -86,15 +87,10 @@
                             </div>
                         </div>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"><i class="text-secondary ti-reload"></i>Activity</a>
-                        <a class="dropdown-item" href="#"><i class="text-success ti-email"></i>Messages</a>
                         <a class="dropdown-item" href="{{route("profile.edit")}}"><i class="text-warning ti-user"></i>Profile</a>
-                        <a class="dropdown-item" href="#"><i class="text-dark ti-layers-alt"></i>Projects <span
-                                class="badge badge-info">6</span> </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"><i class="text-info ti-settings"></i>Settings</a>
-                        <form method="POST" action="{{ route('logout') }}">
 
+                        <div class="dropdown-divider"></div>
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button class="dropdown-item" type="submit"><i class="text-danger ti-unlock"></i>Logout</button>
                         </form>

@@ -44,8 +44,16 @@ Route::middleware('auth')->group(function () {
 
 
     //order_routes
-    Route::get('/orders', [OrderController::class, 'index'])->name("orders");
+    Route::get('/orders/incomming', [OrderController::class, 'index'])->name("orders");
+    Route::get('/orders/trash', [OrderController::class, 'trash'])->name("ordersTrash");
+    Route::get('/orders/underProcessing', [OrderController::class, 'underProcessingIndex'])->name("underProcessingOrders");
+    Route::get('/orders/done', [OrderController::class, 'doneIndex'])->name("doneOrders");
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name("showOrder");
+    Route::get('/orders/trash/{id}', [OrderController::class, 'showTrash'])->name("showTrashOrder");
+    Route::post('/orders/underProcessingOrder/{id}', [OrderController::class, 'underProcessingOrder'])->name("updateToUnderProcessingOrder");
+    Route::post('/orders/doneOrder/{id}', [OrderController::class, 'doneOrder'])->name("updateToDoneOrder");
+    Route::delete('/orders/delete/{id}', [OrderController::class, 'destroy'])->name("updateToDeleteOrder");
+    Route::post('/orders/restore/{id}', [OrderController::class, 'restore'])->name("restoreOrder");
 });
 
 require __DIR__ . '/auth.php';
